@@ -1,0 +1,61 @@
+# Parallel Execution Demo
+# Demonstrates concurrent task execution
+
+task download_file with filename:
+    greet "  [Download] Starting download..."
+    repeat 3 times:
+        greet "  [Download] Downloading chunk..."
+    greet "  [Download] Complete!"
+
+task process_data:
+    greet "  [Process] Starting data processing..."
+    repeat 3 times:
+        greet "  [Process] Processing batch..."
+    greet "  [Process] Complete!"
+
+task send_notification:
+    greet "  [Notify] Preparing notification..."
+    repeat 3 times:
+        greet "  [Notify] Sending message..."
+    greet "  [Notify] Complete!"
+
+task backup_task:
+    greet "  [Backup] Starting backup..."
+    repeat 2 times:
+        greet "  [Backup] Backing up data..."
+    greet "  [Backup] Complete!"
+
+task parallel_demo:
+    greet "╔════════════════════════════════════════╗"
+    greet "║   PARALLEL EXECUTION DEMO             ║"
+    greet "╚════════════════════════════════════════╝"
+    greet ""
+    
+    # Sequential execution for comparison
+    greet "--- Sequential Execution (one at a time) ---"
+    greet "Task 1:"
+    run download_file "data.txt"
+    greet "Task 2:"
+    run process_data
+    greet "Task 3:"
+    run send_notification
+    greet ""
+    
+    # Parallel execution
+    greet "--- Parallel Execution (simultaneous) ---"
+    greet "Starting all tasks at once..."
+    greet ""
+    run parallel download_file, process_data, send_notification
+    greet ""
+    
+    # Another parallel example
+    greet "--- Multiple Workers in Parallel ---"
+    run parallel backup_task, download_file, process_data
+    greet ""
+    
+    greet "╔════════════════════════════════════════╗"
+    greet "║   Parallel Execution Complete!        ║"
+    greet "║   All tasks ran concurrently!         ║"
+    greet "╚════════════════════════════════════════╝"
+
+run parallel_demo

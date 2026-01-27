@@ -1,0 +1,62 @@
+# Error Handling Demo
+# Demonstrates protect/handle error recovery
+
+task risky_operation:
+    greet "Performing risky file operation..."
+    backup "missing_file.txt" to "Backup"
+    greet "This line won't execute if error occurs"
+
+task safe_operation:
+    greet "Performing safe operation..."
+    set x = 10
+    set y = 20
+    greet "Safe operation complete!"
+
+task error_demo:
+    greet "╔════════════════════════════════════════╗"
+    greet "║   ERROR HANDLING DEMONSTRATION        ║"
+    greet "╚════════════════════════════════════════╝"
+    greet ""
+    
+    # Example 1: Basic error handling
+    greet "--- Example 1: Basic Protection ---"
+    protect:
+        run risky_operation
+    handle:
+        greet "✓ Error was caught!"
+        greet "✓ Program recovered"
+        run safe_operation
+    greet ""
+    
+    # Example 2: Multiple operations in protect block
+    greet "--- Example 2: Multiple Protected Operations ---"
+    protect:
+        greet "Operation 1: Safe"
+        set files = ["test1.txt", "test2.txt"]
+        greet "Operation 2: Creating list"
+        backup "another_missing.txt" to "Backup"
+        greet "Operation 3: Won't reach here"
+    handle:
+        greet "✓ Recovered from error in multi-step operation"
+        greet "✓ Continuing with alternative path"
+    greet ""
+    
+    # Example 3: Nested error handling
+    greet "--- Example 3: Nested Protection ---"
+    protect:
+        greet "Outer protection layer"
+        protect:
+            greet "Inner protection layer"
+            greet "All operations successful here"
+        handle:
+            greet "Inner handler (not triggered)"
+    handle:
+        greet "Outer handler (not triggered)"
+    greet "✓ Nested error handling works!"
+    greet ""
+    
+    greet "╔════════════════════════════════════════╗"
+    greet "║   Error Handling Complete!            ║"
+    greet "╚════════════════════════════════════════╝"
+
+run error_demo

@@ -1,0 +1,20 @@
+# File Utilities Module
+# Custom Athera module for file operations
+
+task backup_multiple with folder:
+    greet "Backing up files to custom folder..."
+    set files = ["TestData/sample.txt", "TestData/notes.txt"]
+    repeat each file in files:
+        backup file to folder
+    greet "Backup complete!"
+
+task check_files:
+    greet "Checking file existence..."
+    check "TestData/sample.txt" -> greet "  ✓ sample.txt exists"
+    check "TestData/notes.txt" -> greet "  ✓ notes.txt exists"
+    greet "File check complete!"
+
+task organize with source, destination:
+    greet "Organizing files..."
+    backup source to destination
+    greet "Organization complete!"

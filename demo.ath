@@ -1,0 +1,67 @@
+# Advanced Athera Demo - Showcasing all language features
+
+task greet_user:
+    greet "Welcome to Athera Programming Language!"
+    greet "This is a unique language with natural syntax"
+
+task demonstrate_variables:
+    greet "=== Variables Demo ==="
+    set name = "Athera"
+    set version = 1.0
+    set active = true
+    greet "Language name: Athera"
+    greet "Version: 1.0"
+    
+task demonstrate_loops:
+    greet "=== Loops Demo ==="
+    
+    # Counted loop
+    greet "Counting to 3:"
+    repeat 3 times:
+        greet "  Tick!"
+    
+    # Iteration loop
+    set colors = ["red", "green", "blue"]
+    greet "Available colors:"
+    repeat each color in colors:
+        greet "  Color: dynamic"
+
+task demonstrate_conditions:
+    greet "=== Conditions Demo ==="
+    set has_backup = true
+    greet "Checking backup status..."
+    
+task demonstrate_file_ops:
+    greet "=== File Operations Demo ==="
+    set docs = ["readme.txt", "notes.txt"]
+    greet "Simulating backup operations..."
+    repeat each doc in docs:
+        greet "  Processing file for backup"
+
+task main_demo:
+    greet "╔═══════════════════════════════════╗"
+    greet "║   ATHERA LANGUAGE SHOWCASE       ║"
+    greet "╚═══════════════════════════════════╝"
+    greet ""
+    
+    run greet_user
+    greet ""
+    
+    run demonstrate_variables
+    greet ""
+    
+    run demonstrate_loops
+    greet ""
+    
+    run demonstrate_conditions
+    greet ""
+    
+    run demonstrate_file_ops
+    greet ""
+    
+    greet "╔═══════════════════════════════════╗"
+    greet "║   Demo Complete! Thank you!      ║"
+    greet "╚═══════════════════════════════════╝"
+
+# Execute the main demo
+run main_demo

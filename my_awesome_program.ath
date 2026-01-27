@@ -1,0 +1,9 @@
+# My Awesome Program
+# Created by you!
+
+task hello:
+    greet "hello! this is athera"
+    greet "I'm learning to code in Athera!"
+    greet "This is so cool!"
+
+run hello

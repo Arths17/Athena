@@ -1,0 +1,123 @@
+# Real-World Application Demo
+# Building a complete application with all advanced features
+
+# Import required modules
+use file_utils
+
+# ============================================
+# Configuration
+# ============================================
+
+task setup_config with app_name, version:
+    greet "=== Application Setup ==="
+    set config = "initialized"
+    greet "Application configured successfully!"
+    return config
+
+# ============================================
+# Data Processing Pipeline
+# ============================================
+
+task validate_data with data:
+    greet "  [Validate] Checking data integrity..."
+    protect:
+        check "TestData/sample.txt" -> greet "  [Validate] ✓ Data valid"
+    handle:
+        greet "  [Validate] ✗ Validation failed, using defaults"
+    return data
+
+task transform_data with data:
+    greet "  [Transform] Converting data format..."
+    set transformed = "processed"
+    return transformed
+
+task save_data with data, destination:
+    greet "  [Save] Saving to destination..."
+    backup "TestData/sample.txt" to destination
+    greet "  [Save] ✓ Data saved"
+
+# ============================================
+# Parallel Processing Workers
+# ============================================
+
+task worker_analyze:
+    greet "  [Worker-Analyze] Starting analysis..."
+    repeat 2 times:
+        greet "  [Worker-Analyze] Analyzing chunk..."
+    greet "  [Worker-Analyze] Analysis complete!"
+
+task worker_compress:
+    greet "  [Worker-Compress] Starting compression..."
+    repeat 2 times:
+        greet "  [Worker-Compress] Compressing data..."
+    greet "  [Worker-Compress] Compression complete!"
+
+task worker_encrypt:
+    greet "  [Worker-Encrypt] Starting encryption..."
+    repeat 2 times:
+        greet "  [Worker-Encrypt] Encrypting..."
+    greet "  [Worker-Encrypt] Encryption complete!"
+
+# ============================================
+# Main Application
+# ============================================
+
+task process_pipeline with input_data:
+    greet ""
+    greet "--- Data Processing Pipeline ---"
+    
+    # Step 1: Validate
+    protect:
+        run validate_data input_data
+    handle:
+        greet "  ⚠ Continuing with error recovery"
+    
+    # Step 2: Transform
+    run transform_data input_data
+    
+    # Step 3: Parallel processing
+    greet "  Starting parallel workers..."
+    run parallel worker_analyze, worker_compress, worker_encrypt
+    
+    # Step 4: Save
+    protect:
+        run save_data input_data, "ProcessedData"
+    handle:
+        greet "  ⚠ Save failed, retrying..."
+        run save_data input_data, "Backup"
+    
+    greet "✓ Pipeline complete!"
+
+task run_application:
+    greet "╔════════════════════════════════════════════╗"
+    greet "║   REAL-WORLD ATHERA APPLICATION           ║"
+    greet "║   Demonstrating All Advanced Features     ║"
+    greet "╚════════════════════════════════════════════╝"
+    greet ""
+    
+    # Initialize with parameters
+    run setup_config "DataProcessor", 1.0
+    greet ""
+    
+    # Process data with error handling and parallel execution
+    run process_pipeline "user_data.csv"
+    greet ""
+    
+    # Use imported module functions
+    greet "--- Using Module Functions ---"
+    run check_files
+    greet ""
+    
+    greet "╔════════════════════════════════════════════╗"
+    greet "║   Application Complete!                   ║"
+    greet "║                                            ║"
+    greet "║   Features Used:                           ║"
+    greet "║   ✓ Functions with parameters             ║"
+    greet "║   ✓ Error handling (protect/handle)       ║"
+    greet "║   ✓ Parallel execution                    ║"
+    greet "║   ✓ Custom modules                        ║"
+    greet "║   ✓ Return values                         ║"
+    greet "╚════════════════════════════════════════════╝"
+
+# Run the application
+run run_application

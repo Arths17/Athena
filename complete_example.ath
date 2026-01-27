@@ -1,0 +1,90 @@
+# Complete Athera Language Example
+# Demonstrates all features of the language
+
+task welcome:
+    greet "╔══════════════════════════════════════════╗"
+    greet "║  Welcome to Athera Programming Language ║"
+    greet "║  A Natural, Expressive Language         ║"
+    greet "╚══════════════════════════════════════════╝"
+
+task show_variables:
+    greet ""
+    greet "--- Variables ---"
+    set app_name = "Athera"
+    set version = 1.0
+    set is_ready = true
+    set features = ["tasks", "loops", "conditions", "file-ops"]
+    greet "Application initialized with 4 features"
+
+task show_loops:
+    greet ""
+    greet "--- Loops ---"
+    greet "Counted loop (repeat 3 times):"
+    repeat 3 times:
+        greet "  → Loop iteration"
+    
+    greet "List iteration:"
+    set items = ["Alpha", "Beta", "Gamma"]
+    repeat each item in items:
+        greet "  → Processing item"
+
+task show_conditions:
+    greet ""
+    greet "--- Conditions ---"
+    greet "Checking if backup folder exists..."
+    check "BackupFolder" -> greet "  ✓ Backup folder found!"
+    check "NonExistent" -> greet "  ✗ This won't show"
+    greet "  (Failed checks are silently skipped)"
+
+task show_file_operations:
+    greet ""
+    greet "--- File Operations ---"
+    greet "Creating a test file..."
+    greet "Backing up files..."
+    set files_to_backup = ["TestData/sample.txt"]
+    repeat each file in files_to_backup:
+        backup file to "BackupFolder"
+    greet "  ✓ Files backed up successfully"
+
+task show_task_calling:
+    greet ""
+    greet "--- Task Calling ---"
+    greet "Calling helper task..."
+    run helper_task
+    greet "Main task resumed"
+
+task helper_task:
+    greet "  → Inside helper task!"
+    greet "  → Doing some work..."
+    greet "  → Helper task complete"
+
+task arithmetic_demo:
+    greet ""
+    greet "--- Arithmetic & Expressions ---"
+    set a = 10
+    set b = 20
+    greet "Variables: a=10, b=20"
+    greet "(Note: Full arithmetic in expressions coming soon)"
+
+task finale:
+    greet ""
+    greet "╔══════════════════════════════════════════╗"
+    greet "║         All Features Demonstrated!      ║"
+    greet "║                                          ║"
+    greet "║  Athera is ready for your projects!     ║"
+    greet "╚══════════════════════════════════════════╝"
+    greet ""
+    greet "Thank you for exploring Athera!"
+
+task main:
+    run welcome
+    run show_variables
+    run show_loops
+    run show_conditions
+    run show_file_operations
+    run show_task_calling
+    run arithmetic_demo
+    run finale
+
+# Execute the main program
+run main

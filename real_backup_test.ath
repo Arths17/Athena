@@ -1,0 +1,22 @@
+# Real Backup Test - Actual file operations
+
+task test_real_backup:
+    greet "═══════════════════════════════════"
+    greet "  Real File Backup Test"
+    greet "═══════════════════════════════════"
+    greet ""
+    
+    set files = ["TestData/sample.txt", "TestData/notes.txt"]
+    
+    greet "Backing up files to BackupFolder..."
+    repeat each file in files:
+        backup file to "BackupFolder"
+    
+    greet ""
+    check "BackupFolder/sample.txt" -> greet "✓ Sample.txt backed up successfully!"
+    check "BackupFolder/notes.txt" -> greet "✓ Notes.txt backed up successfully!"
+    
+    greet ""
+    greet "Backup operation completed!"
+
+run test_real_backup

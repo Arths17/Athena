@@ -1,0 +1,13 @@
+# Morning Routine - Example Athera Program
+# This demonstrates the core features of the Athera language
+
+task morning_routine:
+    greet "Good morning!"
+    set files = ["Documents/report.docx", "Pictures/photo.jpg"]
+    repeat each file in files:
+        backup file to "Backup"
+    check "Backup/report.docx" -> greet "Backup complete!"
+    greet "Have a nice day!"
+
+# Run the morning routine task
+run morning_routine

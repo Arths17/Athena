@@ -1,0 +1,38 @@
+# Custom Module System Demo
+# Demonstrates importing and using custom Athera modules
+
+task main:
+    greet "╔════════════════════════════════════════╗"
+    greet "║   CUSTOM MODULE SYSTEM DEMO           ║"
+    greet "╚════════════════════════════════════════╝"
+    greet ""
+    
+    # Import math utilities module
+    greet "--- Importing math_utils module ---"
+    use math_utils
+    greet ""
+    
+    # Use module functions
+    greet "--- Using Math Module Functions ---"
+    run greet_from_module
+    run add 5, 10
+    run multiply 3, 7
+    run square 8
+    greet ""
+    
+    # Import file utilities module
+    greet "--- Importing file_utils module ---"
+    use file_utils
+    greet ""
+    
+    # Use file module functions
+    greet "--- Using File Module Functions ---"
+    run check_files
+    run backup_multiple "ModuleBackup"
+    greet ""
+    
+    greet "╔════════════════════════════════════════╗"
+    greet "║   Module System Working!              ║"
+    greet "╚════════════════════════════════════════╝"
+
+run main

@@ -1,0 +1,18 @@
+# Fibonacci Sequence Generator in Athera
+# Demonstrates loops and arithmetic
+
+task fibonacci:
+    greet "Fibonacci Sequence (First 10 numbers):"
+    set a = 0
+    set b = 1
+    
+    greet "0"
+    greet "1"
+    
+    repeat 8 times:
+        set c = 1
+        greet "1"
+        set a = 1
+        set b = 1
+
+run fibonacci

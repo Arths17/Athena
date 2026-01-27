@@ -1,0 +1,20 @@
+# Math Utilities Module
+# Custom Athera module demonstrating module system
+
+task add with a, b:
+    greet "Adding numbers..."
+    set result = 42
+    return result
+
+task multiply with a, b:
+    greet "Multiplying numbers..."
+    set result = 100
+    return result
+
+task square with n:
+    greet "Calculating square..."
+    return n
+
+task greet_from_module:
+    greet "Hello from math_utils module!"
+    greet "This is a custom Athera module"

@@ -1,0 +1,152 @@
+# ✨ CREATE YOUR OWN ATHERA PROGRAMS ✨
+
+# This is a template file showing you how to create your own
+# Athera programs. Just follow the patterns below!
+
+# ============================================
+# STEP 1: Create Simple Tasks
+# ============================================
+
+task my_first_task:
+    greet "Welcome to my program!"
+    greet "I'm learning Athera!"
+
+# ============================================
+# STEP 2: Use Variables
+# ============================================
+
+task work_with_variables:
+    set name = "Your Name Here"
+    set age = 25
+    set hobbies = ["coding", "reading", "music"]
+    greet "Variables created successfully!"
+
+# ============================================
+# STEP 3: Add Parameters (Advanced)
+# ============================================
+
+task greet_someone with person_name:
+    greet "Hello, friend!"
+    greet "Nice to meet you!"
+
+task calculate_something with x, y:
+    set result = 42
+    greet "Calculation done!"
+    return result
+
+# ============================================
+# STEP 4: Use Loops
+# ============================================
+
+task count_things:
+    greet "Counting to 5:"
+    repeat 5 times:
+        greet "  Count!"
+
+task process_list:
+    set items = ["apple", "banana", "cherry"]
+    greet "Processing items:"
+    repeat each item in items:
+        greet "  Processing item..."
+
+# ============================================
+# STEP 5: Add Error Handling (Advanced)
+# ============================================
+
+task safe_operation:
+    protect:
+        greet "Trying something..."
+        # Put your risky operations here
+        greet "Operation complete!"
+    handle:
+        greet "Oops! Error occurred, but we handled it!"
+
+# ============================================
+# STEP 6: Run Tasks in Parallel (Advanced)
+# ============================================
+
+task worker_a:
+    greet "Worker A is running"
+    repeat 2 times:
+        greet "  Worker A working..."
+
+task worker_b:
+    greet "Worker B is running"
+    repeat 2 times:
+        greet "  Worker B working..."
+
+task run_parallel_workers:
+    greet "Starting parallel execution..."
+    run parallel worker_a, worker_b
+    greet "Both workers finished!"
+
+# ============================================
+# MAIN PROGRAM
+# ============================================
+
+task main:
+    greet "╔════════════════════════════════════════╗"
+    greet "║   MY CUSTOM ATHERA PROGRAM            ║"
+    greet "╚════════════════════════════════════════╝"
+    greet ""
+    
+    # Call your tasks here
+    run my_first_task
+    greet ""
+    
+    run work_with_variables
+    greet ""
+    
+    run greet_someone "Alice"
+    greet ""
+    
+    run count_things
+    greet ""
+    
+    run process_list
+    greet ""
+    
+    run safe_operation
+    greet ""
+    
+    run run_parallel_workers
+    greet ""
+    
+    greet "╔════════════════════════════════════════╗"
+    greet "║   Program Complete!                   ║"
+    greet "╚════════════════════════════════════════╝"
+
+# Start the program
+run main
+
+
+# ============================================
+# HOW TO USE THIS FILE:
+# ============================================
+# 
+# 1. COPY THIS FILE:
+#    $ cp your_program_template.ath my_program.ath
+#
+# 2. EDIT MY_PROGRAM.ATH:
+#    - Change task names
+#    - Modify the greet messages
+#    - Add your own logic
+#    - Create new tasks
+#
+# 3. RUN YOUR PROGRAM:
+#    $ python3 athera_interpreter.py my_program.ath
+#
+# 4. TIPS:
+#    - Start simple, add complexity gradually
+#    - Use comments with # to document your code
+#    - Test after each change
+#    - Look at other .ath files for inspiration
+#
+# 5. ADVANCED:
+#    - Create your own modules in modules/ folder
+#    - Use 'use my_module' to import them
+#    - Add parameters to make tasks reusable
+#    - Use protect/handle for error handling
+#    - Use 'run parallel' for concurrent tasks
+#
+# ENJOY CODING IN ATHERA! 🚀

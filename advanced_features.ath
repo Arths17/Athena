@@ -1,0 +1,112 @@
+# Advanced Athera Features Demo
+# Functions with parameters, error handling, parallel execution
+
+# ============================================
+# 1. FUNCTIONS WITH PARAMETERS
+# ============================================
+
+task greet_person with name:
+    greet "Hello, parameter in action!"
+    greet "Welcome to Athera!"
+
+task calculate_area with width, height:
+    set area = 100
+    greet "Calculating area..."
+    greet "Area computed!"
+    return area
+
+task show_info with name, age, city:
+    greet "=== User Information ==="
+    greet "Processing user data..."
+    greet "Data displayed!"
+
+# ============================================
+# 2. ERROR HANDLING
+# ============================================
+
+task demonstrate_error_handling:
+    greet ""
+    greet "=== Error Handling Demo ==="
+    
+    protect:
+        greet "Attempting risky operation..."
+        backup "nonexistent.txt" to "Backup"
+        greet "This may not show if error occurs"
+    handle:
+        greet "Error was caught and handled!"
+        greet "Program continues normally"
+
+# ============================================
+# 3. PARALLEL EXECUTION
+# ============================================
+
+task worker_one:
+    greet "  [Worker 1] Starting..."
+    repeat 2 times:
+        greet "  [Worker 1] Working..."
+    greet "  [Worker 1] Done!"
+
+task worker_two:
+    greet "  [Worker 2] Starting..."
+    repeat 2 times:
+        greet "  [Worker 2] Working..."
+    greet "  [Worker 2] Done!"
+
+task worker_three:
+    greet "  [Worker 3] Starting..."
+    repeat 2 times:
+        greet "  [Worker 3] Working..."
+    greet "  [Worker 3] Done!"
+
+task demonstrate_parallel:
+    greet ""
+    greet "=== Parallel Execution Demo ==="
+    greet "Running 3 tasks simultaneously..."
+    greet ""
+    run parallel worker_one, worker_two, worker_three
+    greet ""
+    greet "All parallel tasks completed!"
+
+# ============================================
+# 4. COMBINING FEATURES
+# ============================================
+
+task process_user with username, age:
+    greet "Processing user with parameters..."
+    greet "User processing complete!"
+
+task main_demo:
+    greet "╔════════════════════════════════════════╗"
+    greet "║   ADVANCED ATHERA FEATURES DEMO       ║"
+    greet "╚════════════════════════════════════════╝"
+    greet ""
+    
+    # Test 1: Functions with parameters
+    greet "--- Test 1: Functions with Parameters ---"
+    run greet_person "Alice"
+    greet ""
+    run show_info "Bob", 25, "New York"
+    greet ""
+    
+    # Test 2: Error handling
+    run demonstrate_error_handling
+    greet ""
+    
+    # Test 3: Parallel execution
+    run demonstrate_parallel
+    greet ""
+    
+    # Test 4: Combined features
+    greet "--- Test 4: Combined Features ---"
+    protect:
+        run process_user "Charlie", 30
+    handle:
+        greet "Handled any errors in processing"
+    
+    greet ""
+    greet "╔════════════════════════════════════════╗"
+    greet "║   All Advanced Features Tested!       ║"
+    greet "╚════════════════════════════════════════╝"
+
+# Run the main demo
+run main_demo
