@@ -1,0 +1,58 @@
+# Example: Conditions & Loops
+
+Control flow in Athera.
+
+```athera
+greet "=== Conditions ==="
+greet ""
+
+# Check file existence
+check "hello.txt" -> greet "hello.txt exists!"
+check "missing.txt" -> greet "This won't show"
+
+greet ""
+greet "=== Loops ==="
+greet ""
+
+# Count 5 times
+greet "Counting to 5:"
+repeat 5 times:
+    greet "  ✓"
+
+greet ""
+
+# Iterate over list
+set colors = ["red", "green", "blue"]
+greet "Colors:"
+repeat each color in colors:
+    greet color
+
+greet ""
+
+# Nested loops
+greet "Multiplication table (3x3):"
+set rows = [1, 2, 3]
+set cols = [1, 2, 3]
+repeat each row in rows:
+    set line = ""
+    repeat each col in cols:
+        set product = row * col
+        set line = line + product
+        set line = line + " "
+    greet line
+
+greet ""
+greet "Done!"
+```
+
+**Run it:**
+```bash
+athera run conditions.ath
+```
+
+Key concepts:
+- `check condition -> action` runs action if condition is true
+- `repeat N times:` repeats N times
+- `repeat each var in list:` iterates over list
+- Loops can be nested
+- Indentation determines block scope

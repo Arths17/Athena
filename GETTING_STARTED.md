@@ -1,260 +1,347 @@
-# 🚀 Getting Started with Athera
+# Getting Started with Athera
 
-Welcome to **Athera** - a unique programming language with natural, expressive syntax!
+Welcome! Athera is a programming language designed to be **clear, intentional, and expressive**. This guide gets you writing Athera programs in 10 minutes.
 
-## ⚡ Quick Start (30 seconds)
+---
 
-### Method 1: Using the Runner Script
+## Installation (Phase 1)
+
+### macOS – Fastest Setup
+
+**Step 1: Download Binary**
+- Download `athera` from [GitHub Releases](https://github.com/Arths17/Athena/releases/tag/v0.1.0-phase1)
+
+**Step 2: Make it Executable & Install**
 ```bash
-./run_athera.sh 2
+chmod +x athera
+sudo mv athera /usr/local/bin/
 ```
-This runs the complete example showcase!
 
-### Method 2: Direct Execution
+**Step 3: Verify**
 ```bash
-python3 athera_interpreter.py complete_example.ath
+athera --help
+which athera
 ```
 
-## 📚 Step-by-Step Tutorial
+You should see: `/usr/local/bin/athera`
 
-### Step 1: Your First Program
+### Build from Source
+```bash
+git clone https://github.com/Arths17/Athena.git
+cd Athena
+go build -o athera ./cmd/athera
+sudo mv athera /usr/local/bin/
+```
 
-Create a file called `hello.ath`:
+---
+
+## Your First Program (30 Seconds)
+
+Create `hello.ath`:
 ```athera
-task greet:
-    greet "Hello, Athera!"
-
-run greet
+greet "Hello, World!"
 ```
 
 Run it:
 ```bash
-python3 athera_interpreter.py hello.ath
+athera run hello.ath
 ```
 
 Output:
 ```
-Hello, Athera!
+Hello, World!
 ```
 
-### Step 2: Working with Variables
+**That's it!** 🎉
 
-Create `variables.ath`:
+---
+
+## Five Essential Concepts
+
+### 1. **Greet** – Print Output
 ```athera
-task show_variables:
-    set name = "Alice"
-    set age = 25
-    set hobbies = ["coding", "reading", "music"]
-    
-    greet "Variables set successfully!"
-
-run show_variables
+greet "This prints to the screen"
 ```
 
-### Step 3: Using Loops
-
-Create `loops.ath`:
+### 2. **Set** – Variables
 ```athera
-task count:
-    greet "Counting to 5:"
-    repeat 5 times:
-        greet "  Count!"
-
-run count
+set name = "Alice"
+set age = 30
+set items = ["apple", "banana"]
+greet name
 ```
 
-### Step 4: Working with Lists
-
-Create `lists.ath`:
+### 3. **Repeat** – Loops
 ```athera
-task process_list:
-    set colors = ["red", "green", "blue"]
-    
-    greet "Processing colors:"
-    repeat each color in colors:
-        greet "  Found a color!"
+# Fixed count
+repeat 3 times:
+    greet "Hello!"
 
-run process_list
+# Over a list
+set fruits = ["apple", "banana"]
+repeat each fruit in fruits:
+    greet fruit
 ```
 
-### Step 5: Multiple Tasks
-
-Create `tasks.ath`:
+### 4. **Task** – Reusable Code
 ```athera
-task helper:
-    greet "  Helper is working..."
+task greet_user with name:
+    greet "Hello, "
+    greet name
 
-task main:
-    greet "Main task starting"
-    run helper
-    greet "Main task ending"
-
-run main
+run greet_user "Alice"
 ```
 
-### Step 6: Real File Operations
-
-First, create a test file:
-```bash
-echo "Test content" > test.txt
-```
-
-Then create `backup.ath`:
+### 5. **Check** – Conditions
 ```athera
-task backup_file:
-    greet "Backing up test.txt..."
-    backup "test.txt" to "MyBackup"
-    check "MyBackup/test.txt" -> greet "Backup successful!"
-
-run backup_file
+check "file.txt" -> greet "File exists!"
+check "missing.txt" -> greet "Won't print"
 ```
 
-## 🎯 Try the Examples
+---
 
-We've included 6 ready-to-run examples:
+## Complete Examples
 
-### 1. Morning Routine (Basic)
-```bash
-./run_athera.sh 1
-```
-Shows: tasks, loops, file operations, conditions
-
-### 2. Complete Example (Comprehensive)
-```bash
-./run_athera.sh 2
-```
-Shows: ALL language features in action
-
-### 3. Demo (Visual)
-```bash
-./run_athera.sh 3
-```
-Shows: Formatted output, multiple tasks
-
-### 4. Real Backup Test (Practical)
-```bash
-./run_athera.sh 4
-```
-Shows: Real file operations with verification
-
-### 5. File Test (Operations)
-```bash
-./run_athera.sh 5
-```
-Shows: File handling patterns
-
-### 6. Fibonacci (Algorithm)
-```bash
-./run_athera.sh 6
-```
-Shows: Loops and arithmetic
-
-## 📖 Language Cheat Sheet
-
-| Feature | Syntax | Example |
-|---------|--------|---------|
-| Task | `task name:` | `task hello:` |
-| Print | `greet "msg"` | `greet "Hi!"` |
-| Variable | `set x = value` | `set age = 25` |
-| Loop (count) | `repeat N times:` | `repeat 5 times:` |
-| Loop (each) | `repeat each x in list:` | `repeat each item in items:` |
-| Condition | `check x -> action` | `check "file" -> greet "OK"` |
-| Backup | `backup src to dst` | `backup "x.txt" to "Backup"` |
-| Call Task | `run task_name` | `run helper` |
-
-## 💡 Common Patterns
-
-### Pattern: Initialize and Process
+### Example 1: Variables & Output
 ```athera
+set greeting = "Hello, World!"
+greet greeting
+
+set count = 42
+greet count
+```
+
+### Example 2: Lists & Loops
+```athera
+set colors = ["red", "green", "blue"]
+repeat each color in colors:
+    greet color
+```
+
+### Example 3: File Operations
+```athera
+use io
+
+io.write "output.txt" "Hello from Athera!"
+set content = io.read "output.txt"
+greet content
+```
+
+### Example 4: Text Processing
+```athera
+use text
+
+set message = "hello world"
+set upper = text.upper message
+greet upper
+
+set words = text.split message " "
+repeat each word in words:
+    greet word
+```
+
+### Example 5: Tasks & Functions
+```athera
+task add with a, b:
+    set result = a + b
+    greet result
+
+run add 5 10
+```
+
+---
+
+## Using Standard Library Modules
+
+### **io** – File Operations
+```athera
+use io
+io.write "file.txt" "content"
+set data = io.read "file.txt"
+io.append "log.txt" "new line"
+check io.exists "file.txt" -> greet "Found!"
+```
+
+### **text** – String Functions
+```athera
+use text
+set upper = text.upper "hello"
+set len = text.length "hi"
+set has_it = text.contains "hello" "ell"
+set words = text.split "a,b,c" ","
+```
+
+### **math** – Calculations
+```athera
+use math
+set sum = math.add 2 3 4
+set product = math.mul 5 6
+set root = math.sqrt 16
+```
+
+### **list** – List Operations
+```athera
+use list
+set arr = [1, 2, 3]
+set len = list.length arr
+set item = list.at arr 0
+set has_2 = list.contains arr 2
+```
+
+### **dict** – Dictionaries
+```athera
+use dict
+set obj = {}
+set obj = dict.set obj "name" "Alice"
+set name = dict.get obj "name"
+set keys = dict.keys obj
+```
+
+### **time** – Dates & Timers
+```athera
+use time
+greet time.now
+time.sleep 1000
+greet time.timestamp
+```
+
+### **json** – JSON Parsing
+```athera
+use json
+set text = "{\"name\": \"Alice\"}"
+set obj = json.parse text
+greet obj
+```
+
+### **path** – File Paths
+```athera
+use path
+set file = path.join "home" "user" "file.txt"
+set dir = path.dir file
+set name = path.base file
+```
+
+---
+
+## REPL – Interactive Mode
+
+Try commands live:
+```bash
+athera repl
+```
+
+Type commands:
+```
+athera> greet "Hello"
+Hello
+athera> set x = 5
+athera> greet x
+5
+athera> exit
+Goodbye.
+```
+
+---
+
+## Common Patterns
+
+### Pattern 1: File Processing
+```athera
+use io
+set lines = io.read_lines "data.txt"
+repeat each line in lines:
+    greet line
+```
+
+### Pattern 2: Error Handling
+```athera
+protect:
+    set data = io.read "missing.txt"
+handle:
+    greet "File not found!"
+    set data = "default"
+```
+
+### Pattern 3: Parallel Tasks
+```athera
+task fetch:
+    greet "Fetching..."
+
 task process:
-    set items = ["a", "b", "c"]
-    repeat each item in items:
-        greet "Processing..."
-    greet "Done!"
+    greet "Processing..."
 
-run process
+run parallel fetch, process
 ```
 
-### Pattern: Conditional Actions
-```athera
-task check_files:
-    check "important.txt" -> greet "File found!"
-    check "missing.txt" -> greet "Won't show if missing"
+---
 
-run check_files
+---
+
+## Tips & Tricks
+
+1. **Comments**: Use `#` for comments
+   ```athera
+   # This is a comment
+   greet "Code runs here"
+   ```
+
+2. **String concatenation**: Use `+`
+   ```athera
+   set msg = "Hello" + " World"
+   greet msg
+   ```
+
+3. **List literals**: Use `[...]`
+   ```athera
+   set items = [1, 2, 3]
+   ```
+
+4. **Access properties**: Use `.` for properties
+   ```athera
+   set msg = "hello"
+   greet msg.length  # Returns 5
+   ```
+
+---
+
+## Troubleshooting
+
+| Problem | Solution |
+|---------|----------|
+| "Command not found: athera" | Make sure `/usr/local/bin` is in PATH |
+| "File not found" | Check file exists with `ls filename.ath` |
+| "Task not found" | Define task before calling with `run` |
+| Indentation errors | Use consistent spacing (2-4 spaces) |
+| Module not found | Use `use module_name` at top |
+
+---
+
+## Next Steps
+
+1. Read [README.md](README.md) for full documentation
+2. Check [QUICKREF.md](QUICKREF.md) for syntax reference
+3. Try examples in [examples/](examples/) folder
+4. Explore [DESIGN_BRIEF_V2.1.md](DESIGN_BRIEF_V2.1.md) for language design
+5. Write your own program!
+
+---
+
+## Share Your Code
+
+Athera programs are single-file, portable `.ath` scripts. Share freely!
+
+```bash
+# Someone with athera installed can run it:
+athera run your_program.ath
 ```
 
-### Pattern: Helper Tasks
-```athera
-task log:
-    greet "  [LOG] Action performed"
+No dependencies. No setup. Just code.
 
-task main:
-    greet "Starting"
-    run log
-    greet "Finished"
+---
 
-run main
-```
+**You're ready!** Start with a simple `greet` and build from there. 🚀
 
-## 🔍 Understanding Errors
-
-### "Task not found"
-```
-[Error: Task 'xyz' not found]
-```
-**Fix**: Define the task before calling it with `run`
-
-### "Source file not found"
-```
-[Warning: Source file not found: file.txt]
-```
-**Fix**: Make sure the file exists before backing it up
-
-### Indentation errors
-```
-Parsing error...
-```
-**Fix**: Use consistent indentation (spaces or tabs, not mixed)
-
-## 🎓 Next Steps
-
-1. **Read the Full Docs**: Check [README.md](README.md)
-2. **Quick Reference**: See [QUICKREF.md](QUICKREF.md)
-3. **Study Examples**: Look at the `.ath` files
-4. **Write Your Own**: Create custom programs
-5. **Experiment**: Try combining features
-
-## 🛠️ Tips for Success
-
-1. **Start Simple**: Begin with one feature at a time
-2. **Test Often**: Run your program after each change
-3. **Use Comments**: Document your code with `#`
-4. **Name Clearly**: Use descriptive task names
-5. **Check Output**: Look at what your program prints
-
-## 🎯 Challenge Yourself
-
-Try these exercises:
-
-**Easy**: Create a task that greets 10 times
-**Medium**: Create a file organizer with 3 folders
-**Hard**: Create a task that calls multiple helper tasks
-
-## 📞 Help & Resources
-
-- **Full Documentation**: `README.md`
-- **Quick Reference**: `QUICKREF.md`  
-- **Project Summary**: `PROJECT_SUMMARY.md`
-- **Interpreter Code**: `athera_interpreter.py` (well commented!)
-
-## 🎉 You're Ready!
-
-You now know enough to start writing Athera programs. Happy coding!
-
-```athera
-task celebrate:
-    greet "🎉 You're an Athera programmer now!"
+For issues or questions, visit [GitHub Issues](https://github.com/Arths17/Athena/issues).
     greet "Start creating amazing things!"
 
 run celebrate

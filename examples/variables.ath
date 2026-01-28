@@ -1,0 +1,42 @@
+# Example: Variables & Lists
+
+Working with data storage in Athera.
+
+```athera
+# Create variables
+set name = "Alice"
+set age = 30
+set hobbies = ["reading", "coding", "gaming"]
+
+# Print them
+greet "Name: "
+greet name
+greet "Age: "
+greet age
+greet "Hobbies:"
+
+repeat each hobby in hobbies:
+    greet hobby
+```
+
+**Run it:**
+```bash
+athera run variables.ath
+```
+
+**Output:**
+```
+Name: 
+Alice
+Age: 
+30
+Hobbies:
+reading
+coding
+gaming
+```
+
+Key concepts:
+- `set var = value` creates a variable
+- `set list = [...]` creates a list
+- `repeat each x in list:` iterates

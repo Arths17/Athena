@@ -1,0 +1,50 @@
+# Example: File Operations
+
+Reading and writing files.
+
+```athera
+use io
+
+# Write a file
+greet "Writing to file..."
+io.write "hello.txt" "Hello from Athera!"
+
+# Check if it exists
+check io.exists "hello.txt" -> greet "File created!"
+
+# Read it back
+greet "Reading from file..."
+set content = io.read "hello.txt"
+greet "Content:"
+greet content
+
+# Append to file
+greet "Appending to file..."
+io.append "hello.txt" "\nSecond line!"
+
+# Read all lines
+set lines = io.read_lines "hello.txt"
+greet "File now has lines:"
+repeat each line in lines:
+    greet line
+
+# File size
+set size = io.size "hello.txt"
+greet "File size: "
+greet size
+greet " bytes"
+```
+
+**Run it:**
+```bash
+athera run file_ops.ath
+```
+
+Key concepts:
+- `use io` imports the file operations module
+- `io.write path content` creates/overwrites a file
+- `io.read path` reads entire file as string
+- `io.read_lines path` reads file as list of lines
+- `io.append path content` adds to end of file
+- `io.exists path` checks if file exists
+- `io.size path` gets file size in bytes

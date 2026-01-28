@@ -1,0 +1,46 @@
+# Example: Tasks & Functions
+
+Reusable code blocks with tasks.
+
+```athera
+task greet_user with name:
+    greet "Hello, "
+    greet name
+    greet "!"
+
+task calculate with a, b:
+    set sum = a + b
+    greet "Sum: "
+    greet sum
+
+# Call tasks
+run greet_user "Alice"
+run greet_user "Bob"
+
+run calculate 5 10
+run calculate 20 30
+```
+
+**Run it:**
+```bash
+athera run tasks.ath
+```
+
+**Output:**
+```
+Hello, 
+Alice
+!
+Hello, 
+Bob
+!
+Sum: 
+15
+Sum: 
+50
+```
+
+Key concepts:
+- `task name with params:` defines a reusable task
+- `run task_name arg1 arg2` calls it with arguments
+- Parameters are available in the task body

@@ -1,0 +1,19 @@
+# Example: Hello World
+
+A minimal Athera program.
+
+```athera
+greet "Hello, World!"
+```
+
+**Run it:**
+```bash
+athera run hello_world.ath
+```
+
+**Output:**
+```
+Hello, World!
+```
+
+This is the simplest possible Athera program. Use it to verify your installation!

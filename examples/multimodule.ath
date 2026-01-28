@@ -1,0 +1,60 @@
+# Example: Using Multiple Modules
+
+Combining different stdlib modules.
+
+```athera
+use io
+use text
+use list
+use time
+
+greet "=== Multi-Module Example ==="
+greet ""
+
+# Create and write a log file
+greet "1. Writing log file..."
+io.write "demo.log" "Application started at "
+io.append "demo.log" time.now
+io.append "demo.log" "\n"
+
+# Read and process it
+greet "2. Reading log file..."
+set content = io.read "demo.log"
+greet "Content:"
+greet content
+
+# Process with text module
+greet "3. Text processing..."
+set upper = text.upper content
+greet "Uppercase:"
+greet upper
+
+# Work with lists
+greet "4. List operations..."
+set items = ["log", "data", "cache"]
+greet "Items:"
+repeat each item in items:
+    greet item
+
+set count = list.length items
+greet "Item count: "
+greet count
+
+# Wait a bit
+greet "5. Waiting..."
+time.sleep 500
+greet "Done waiting!"
+
+greet ""
+greet "=== All modules working together! ==="
+```
+
+**Run it:**
+```bash
+athera run multimodule.ath
+```
+
+Key concepts:
+- Import multiple modules with separate `use` statements
+- Modules work together seamlessly
+- Functions from each module available with `module.function` syntax

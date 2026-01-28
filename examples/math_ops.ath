@@ -1,0 +1,57 @@
+# Example: Math Operations
+
+Arithmetic and calculations.
+
+```athera
+use math
+
+greet "Math Operations"
+greet "=================="
+greet ""
+
+# Addition
+set sum = math.add 10 20 30
+greet "10 + 20 + 30 = "
+greet sum
+
+# Subtraction
+set diff = math.sub 100 25
+greet "100 - 25 = "
+greet diff
+
+# Multiplication
+set product = math.mul 7 8
+greet "7 * 8 = "
+greet product
+
+# Division
+set quotient = math.div 100 4
+greet "100 / 4 = "
+greet quotient
+
+# Square root
+set root = math.sqrt 16
+greet "sqrt(16) = "
+greet root
+
+# Absolute value
+set abs_val = math.abs -42
+greet "abs(-42) = "
+greet abs_val
+
+greet ""
+greet "Done!"
+```
+
+**Run it:**
+```bash
+athera run math_ops.ath
+```
+
+Key concepts:
+- `math.add a b c...` adds multiple numbers
+- `math.sub a b...` subtracts in sequence
+- `math.mul a b c...` multiplies multiple numbers
+- `math.div a b c...` divides in sequence
+- `math.sqrt n` returns square root
+- `math.abs n` returns absolute value

@@ -1,0 +1,65 @@
+# Example: Text Processing
+
+String manipulation with the text module.
+
+```athera
+use text
+
+# Original message
+set message = "hello world"
+greet "Original: "
+greet message
+
+# Uppercase
+set upper = text.upper message
+greet "Upper: "
+greet upper
+
+# Lowercase
+set lower = text.lower "HELLO WORLD"
+greet "Lower: "
+greet lower
+
+# Length
+set length = text.length message
+greet "Length: "
+greet length
+
+# Contains check
+set has_world = text.contains message "world"
+greet "Contains 'world': "
+greet has_world
+
+# Starts with
+set starts = text.starts_with message "hello"
+greet "Starts with 'hello': "
+greet starts
+
+# Split by space
+set words = text.split message " "
+greet "Words:"
+repeat each word in words:
+    greet word
+
+# Trim whitespace
+set padded = "  hello  "
+set trimmed = text.trim padded
+greet "Trimmed: |"
+greet trimmed
+greet "|"
+```
+
+**Run it:**
+```bash
+athera run text_processing.ath
+```
+
+Key concepts:
+- `text.upper string` converts to uppercase
+- `text.lower string` converts to lowercase
+- `text.length string` returns character count
+- `text.contains string substring` checks if present
+- `text.starts_with string prefix` checks start
+- `text.ends_with string suffix` checks end
+- `text.split string delimiter` splits into list
+- `text.trim string` removes whitespace
